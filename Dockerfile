@@ -12,6 +12,4 @@ COPY startup-test.sh /home/docker/
 RUN chmod +x /home/docker/*.sh
 RUN npm install
 
-ENV PORT=6000
-
-ENTRYPOINT [ "/home/docker/startup-test.sh" ]
+ENTRYPOINT [ "/home/docker/startup.sh" ]
