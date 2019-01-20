@@ -1,1 +1,11 @@
 version: '3'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      env: 'test'
+      PORT: 7000
+    entrypoint: /home/docker/startup-test.sh
+    tty: true
