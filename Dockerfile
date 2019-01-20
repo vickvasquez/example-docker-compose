@@ -10,6 +10,6 @@ COPY startup.sh /home/docker/
 COPY startup-test.sh /home/docker/
 
 RUN chmod +x /home/docker/*.sh
-RUN npm install
+RUN npm install --production
 
 ENTRYPOINT [ "/home/docker/startup.sh" ]

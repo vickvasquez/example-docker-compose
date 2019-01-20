@@ -1,12 +1,30 @@
 version: '3'
 
 services:
-  server:
+  web:
+    image: nginx:mainline-alpine
+    container_name: 'webserver'
+    ports:
+      - "80:80"
+    volumes: 
+      - ./config:/etc/nginx/conf.d/
+    links:
+      - api
+    networks: 
+      - app-network
+  api:
     build:
       context: .
       dockerfile: ./Dockerfile
-    ports:
-      - "3002:7000"
     environment:
       PORT: "7000"
-    container_name: 'server'
+    container_name: 'api'
+    ports:
+      - "7000:7000"
+    expose:
+      - "7000"
+    networks: 
+      - app-network
+networks: 
+  app-network:
+    driver: bridge
