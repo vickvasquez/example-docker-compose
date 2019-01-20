@@ -1,15 +1,16 @@
 FROM node:8.11.3
 
 RUN mkdir -p /var/lib/app
+RUN mkdir -p /home/docker
 
 WORKDIR /var/lib/app
 
 COPY . /var/lib/app
+COPY startup.sh /home/docker/
 
-RUN npm install --production
-
-EXPOSE 3000
+RUN chmod +x /home/docker/*.sh
+RUN npm install
 
 ENV PORT=6000
 
-CMD ["node", "index.js"]
+ENTRYPOINT [ "/home/docker/startup.sh" ]
