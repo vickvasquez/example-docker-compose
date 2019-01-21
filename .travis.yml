@@ -1,0 +1,6 @@
+services:
+  docker
+before_script:
+  - chmod +x ./startup.sh
+script:
+  - ./startup-test-sh
